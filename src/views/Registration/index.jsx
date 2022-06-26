@@ -2,7 +2,7 @@ import React from 'react'
 import "./Register.css"
 import regImg from "../../images/undraw_uploading_re_okvh.svg"
 
-const Register = () => {
+const Registration = () => {
     return (
         <div className='register-content'>
             <div className='register-content__middle'>
@@ -19,4 +19,4 @@ const Register = () => {
     )
 }
 
-export { Register }
+export { Registration }

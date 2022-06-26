@@ -12,7 +12,7 @@ const Login = () => {
                 <input type="password" placeholder='contraseña' />
                 <div className='login-buttons'>
                     <button type='button' className='login-button__enter'>Aceptar</button>
-                    <NavLink to={"/register"} className="login-button__register" >
+                    <NavLink to={"/registration"} className="login-button__register" >
                         No tengo una cuenta
                     </NavLink>
                 </div>
