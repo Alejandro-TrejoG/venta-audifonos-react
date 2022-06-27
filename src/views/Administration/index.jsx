@@ -1,12 +1,24 @@
 import React from 'react'
 import "./Administration.css"
 
-import { Footer } from "../../components/Footer"
-
 import imgAdmin from "../../images/undraw_logistics_x-4-dc.svg"
+import { ModalForm } from '../../components/ModalForm'
 
 const Administration = () => {
     const nombre = "Alejandro"
+    const [openModal, setOpenModal] = React.useState(false)
+    const [editeMode, setEditeMode] = React.useState(false)
+
+    const showCreateModal = () => {
+        setEditeMode(false)
+        setOpenModal(true)
+    }
+
+    const showEditModal = () => {
+        setEditeMode(true)
+        setOpenModal(true)
+    }
+
     return (
         <>
             <div className='admin-content'>
@@ -15,7 +27,11 @@ const Administration = () => {
                         <h2 className='admin-title'>
                             ¡Que bueno tenerte de vuelta {nombre}!
                         </h2>
-                        <button type='button' className='btn-new-product'>
+                        <button
+                            type='button'
+                            className='btn-new-product'
+                            onClick={() => { showCreateModal() }}
+                        >
                             Registrar nuevo producto
                         </button>
                     </div>
@@ -84,7 +100,9 @@ const Administration = () => {
                                         <td>
                                             11
                                         </td>
-                                        <td>
+                                        <td
+                                            onClick={() => { showEditModal() }}
+                                        >
                                             Ed
                                         </td>
                                         <td>
@@ -194,6 +212,15 @@ const Administration = () => {
                     </section>
                 </div>
                 <img src={imgAdmin} alt="Administracion" className='admin-img' />
+                {
+                    openModal &&
+                    <ModalForm
+                        // openModal={openModal}
+                        setOpenModal={setOpenModal}
+                        editMode={editeMode}
+                    // setEditeMode={setEditeMode}
+                    />
+                }
             </div>
             <footer className="footer">
                 Desarrollado por : Jessica Lilian Becerra Hernandez | Alejandro Trejo Godinez
