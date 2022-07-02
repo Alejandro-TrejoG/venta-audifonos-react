@@ -9,7 +9,7 @@ const Login = () => {
     const navigate = useNavigate()
     const API = "http://localhost:3001/api/v1/users"
     const [correo, setCorreo] = React.useState("")
-    const [constrasenia, setConstrasenia] = React.useState("")
+    const [contrasenia, setContrasenia] = React.useState("")
 
     const iniciarSesion = async () => {
         const response = await fetch(API)
@@ -17,7 +17,7 @@ const Login = () => {
         const { body } = data
         console.log(body);
         body.forEach(item => {
-            if (item.correo === correo) {
+            if (item.correo === correo && item.contraseña === contrasenia) {
                 console.log(item.correo);
                 Swal.fire({
                     position: 'center',
@@ -47,9 +47,8 @@ const Login = () => {
                 <input
                     type="password"
                     placeholder='contraseña'
-
-                    value={constrasenia}
-                    onChange={e => { setConstrasenia(e.target.value) }}
+                    value={contrasenia}
+                    onChange={e => { setContrasenia(e.target.value) }}
                 />
                 <div className='login-buttons'>
                     <button
