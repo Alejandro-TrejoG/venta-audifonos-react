@@ -1,14 +1,14 @@
 import React from 'react'
 import loginImg from "../../images/undraw_login_re_4vu2.svg"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import "./Login.css"
 
 const Login = () => {
 
+    const navigate = useNavigate()
     const API = "http://localhost:3001/api/v1/users"
     const [correo, setCorreo] = React.useState("")
     const [constrasenia, setConstrasenia] = React.useState("")
-    const [logged, setLogged] = React.useState(false)
 
     const iniciarSesion = async () => {
         const response = await fetch(API)
@@ -17,10 +17,8 @@ const Login = () => {
         console.log(body);
         body.forEach(item => {
             if (item.correo === correo) {
-                setLogged(true)
-                console.log(logged);
-            } else {
-                alert("No estas registrado")
+                console.log(item.correo);
+                navigate("/administration")
             }
         })
 
@@ -44,13 +42,13 @@ const Login = () => {
                     onChange={e => { setConstrasenia(e.target.value) }}
                 />
                 <div className='login-buttons'>
-                    <NavLink
+                    <button
+                        type='button'
                         className='login-button__enter'
-                        onClick={iniciarSesion}
-                        to={logged ? "/administration" : "/"}
+                        onClick={() => { iniciarSesion() }}
                     >
                         Aceptar
-                    </NavLink>
+                    </button>
                     <NavLink to={"/registration"} className="login-button__register" >
                         No tengo una cuenta
                     </NavLink>
