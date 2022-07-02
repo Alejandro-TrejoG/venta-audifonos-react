@@ -2,6 +2,7 @@ import React from 'react'
 import loginImg from "../../images/undraw_login_re_4vu2.svg"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "./Login.css"
+import Swal from 'sweetalert2'
 
 const Login = () => {
 
@@ -18,7 +19,16 @@ const Login = () => {
         body.forEach(item => {
             if (item.correo === correo) {
                 console.log(item.correo);
-                navigate("/administration")
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Bienvenid@',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                setTimeout(function() {
+                    navigate("/administration")
+                },1000)
             }
         })
 
