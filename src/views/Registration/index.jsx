@@ -9,6 +9,7 @@ const Registration = () => {
                 <img src={regImg} alt="Register" className='register-img' />
                 <h2 className='register-title'>¡Registrate!</h2>
                 <form action="" className='register-form'>
+                    <input type="text" className='register-form__nombre' placeholder='nombre' />
                     <input type="email" className='register-form__email' placeholder='correo electronico' />
                     <input type="text" className='register-form__pwd' placeholder='contraseña' />
                     <input type="text" className='register-form__pwd-confirm' placeholder='confirmar contraseña' />
