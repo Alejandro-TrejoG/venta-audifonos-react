@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import "./ModalForm.css"
 import Swal from 'sweetalert2';
-
+import { UserContext } from '../../App'
 
 const ModalForm = ({ setOpenModal, editMode }) => {
+    const { usuario } = React.useContext(UserContext)
 
     const API = "http://localhost:3001/api/v1/products/"
 
@@ -25,7 +26,8 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                 marca: marca,
                 modelo: modelo,
                 precio: precio,
-                stock: stock
+                stock: stock,
+                usuario: usuario.id
             }
             await fetch(API, {
                 method: "POST",
@@ -35,7 +37,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: '¡Excelente! se ha añadido tu audifono',
+                title: '¡Excelente! se ha añadido el audifono',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -50,7 +52,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Llena todos los campos',
+                title: 'Verifica todos los campos',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -132,7 +134,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     <button
                         type='button'
                         className='action-button'
-                        onClick={() => { closeModal()}}
+                        onClick={() => { registrarAudifono()}}
                     >
                         {editMode ? "Guardar" : "Crear" }
                     </button>
