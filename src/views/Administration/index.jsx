@@ -45,7 +45,7 @@ const Administration = () => {
                                             id
                                         </th>
                                         <th>
-                                            Nombre
+                                            Nombr
                                         </th>
                                         <th>
                                             Descripcion

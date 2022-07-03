@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import "./ModalForm.css"
 
 const ModalForm = ({ setOpenModal, editMode }) => {
-
+    
     const closeModal = () => {
         setOpenModal(false)
     }

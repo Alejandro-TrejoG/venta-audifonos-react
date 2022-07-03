@@ -17,18 +17,28 @@ const Login = () => {
         const { body } = data
         console.log(body);
         body.forEach(item => {
-            if (item.correo === correo && item.contraseña === contrasenia) {
-                console.log(item.correo);
+            if(correo.trim() !=="" && contrasenia.trim() !==""){
+                if (item.correo === correo && item.contraseña === contrasenia) {
+                    console.log(item.correo);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Bienvenid@',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(function() {
+                        navigate("/administration")
+                    },1000)
+                }
+            }else{
                 Swal.fire({
                     position: 'center',
-                    icon: 'success',
-                    title: 'Bienvenid@',
+                    icon: 'error',
+                    title: 'Llena todos los campos',
                     showConfirmButton: false,
                     timer: 1500
                 })
-                setTimeout(function() {
-                    navigate("/administration")
-                },1000)
             }
         })
 
@@ -45,7 +55,7 @@ const Login = () => {
                     onChange={e => { setCorreo(e.target.value) }}
                 />
                 <input
-                    type="password"
+                    type='password'
                     placeholder='contraseña'
                     value={contrasenia}
                     onChange={e => { setContrasenia(e.target.value) }}
