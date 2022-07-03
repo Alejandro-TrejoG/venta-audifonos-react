@@ -9,7 +9,7 @@ const Login = () => {
 
     // Usamos el contexto del usuario
 
-    const { setUsuario } = React.useContext(UserContext)
+    const { setUsuario, setLogged } = React.useContext(UserContext)
 
     const navigate = useNavigate()
     const API = "http://localhost:3001/api/v1/users"
@@ -26,6 +26,7 @@ const Login = () => {
                 if (item.correo === correo && item.contraseña === contrasenia) {
                     console.log(item.correo);
                     setUsuario(item)
+                    setLogged(true)
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

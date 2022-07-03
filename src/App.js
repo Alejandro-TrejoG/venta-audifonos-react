@@ -10,6 +10,7 @@ const UserContext = React.createContext()
 function App() {
   const [usuario, setUsuario] = React.useState({})
   const [productosUsuario, setProductosUsuario] = React.useState([])
+  const [logged, setLogged] = React.useState(false)
   return (
     <UserContext.Provider
       value={
@@ -17,7 +18,9 @@ function App() {
           usuario,
           setUsuario,
           productosUsuario,
-          setProductosUsuario
+          setProductosUsuario,
+          logged,
+          setLogged
         }
       }
     >
