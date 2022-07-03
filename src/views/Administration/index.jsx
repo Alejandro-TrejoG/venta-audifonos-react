@@ -3,9 +3,10 @@ import "./Administration.css"
 
 import imgAdmin from "../../images/undraw_logistics_x-4-dc.svg"
 import { ModalForm } from '../../components/ModalForm'
+import { UserContext } from '../../App'
 
 const Administration = () => {
-    const nombre = "Alejandro"
+    const { usuario } = React.useContext(UserContext)
     const [openModal, setOpenModal] = React.useState(false)
     const [editeMode, setEditeMode] = React.useState(false)
 
@@ -25,7 +26,7 @@ const Administration = () => {
                 <div className='admin-content__middle'>
                     <div className='admin-title__content'>
                         <h2 className='admin-title'>
-                            ¡Que bueno tenerte de vuelta {nombre}!
+                            ¡Que bueno tenerte de vuelta {usuario.nombre}!
                         </h2>
                         <button
                             type='button'

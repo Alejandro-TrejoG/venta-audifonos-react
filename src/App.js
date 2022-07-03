@@ -1,13 +1,34 @@
+import React from 'react';
+import { Route, Routes } from "react-router-dom"
+import { Login } from './views/Login';
+import { Registration } from './views/Registration';
+import { Administration } from './views/Administration';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <section className='main-content'>
 
-      </section>
-    </div>
+const UserContext = React.createContext()
+function App() {
+  const [usuario, setUsuario] = React.useState({})
+  const [productosUsuario, setProductosUsuario] = React.useState([])
+  return (
+    <UserContext.Provider
+      value={
+        {
+          usuario,
+          setUsuario,
+          productosUsuario,
+          setProductosUsuario
+        }
+      }
+    >
+      <Routes>
+        {/* <Route path="/" element={<App />} /> */}
+        <Route path='/' element={<Login />} />
+        <Route path='/registration' element={<Registration />} />
+        <Route path='/administration' element={<Administration />} />
+      </Routes>
+    </UserContext.Provider>
   );
 }
 
-export default App;
+export { App, UserContext };

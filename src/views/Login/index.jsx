@@ -3,8 +3,13 @@ import loginImg from "../../images/undraw_login_re_4vu2.svg"
 import { NavLink, useNavigate } from 'react-router-dom'
 import "./Login.css"
 import Swal from 'sweetalert2'
+import { UserContext } from '../../App'
 
 const Login = () => {
+
+    // Usamos el contexto del usuario
+
+    const { setUsuario } = React.useContext(UserContext)
 
     const navigate = useNavigate()
     const API = "http://localhost:3001/api/v1/users"
@@ -17,9 +22,10 @@ const Login = () => {
         const { body } = data
         console.log(body);
         body.forEach(item => {
-            if(correo.trim() !=="" && contrasenia.trim() !==""){
+            if (correo.trim() !== "" && contrasenia.trim() !== "") {
                 if (item.correo === correo && item.contraseña === contrasenia) {
                     console.log(item.correo);
+                    setUsuario(item)
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -27,11 +33,11 @@ const Login = () => {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    setTimeout(function() {
+                    setTimeout(function () {
                         navigate("/administration")
-                    },1000)
+                    }, 1000)
                 }
-            }else{
+            } else {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
