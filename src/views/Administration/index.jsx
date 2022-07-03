@@ -2,6 +2,8 @@ import React from 'react'
 import "./Administration.css"
 
 import imgAdmin from "../../images/undraw_logistics_x-4-dc.svg"
+import imgNotSession from "../../images/undraw_happy_music_g6wc.svg"
+import imgNotProducts from "../../images/undraw_taken_re_yn20.svg"
 import { ModalForm } from '../../components/ModalForm'
 import { UserContext } from '../../App'
 
@@ -30,7 +32,7 @@ const Administration = () => {
         }
 
         getAudifonos()
-    }, [])
+    }, [openModal])
 
     return (
         <>
@@ -51,88 +53,101 @@ const Administration = () => {
                                 </button>
                             </div>
                             <section className='admin-panel'>
+                                {
+                                    productosUsuario.length > 0 ?
+                                        <div className='admin-panel__table'>
+                                            <table className='table'>
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Nombre
+                                                        </th>
+                                                        <th>
+                                                            Descripcion
+                                                        </th>
+                                                        <th>
+                                                            Marca
+                                                        </th>
+                                                        <th>
+                                                            Modelo
+                                                        </th>
+                                                        <th>
+                                                            Tipo de Audifono
+                                                        </th>
+                                                        <th>
+                                                            Precio
+                                                        </th>
+                                                        <th>
+                                                            Stock
+                                                        </th>
+                                                        <th>
+                                                            Editar
+                                                        </th>
+                                                        <th>
+                                                            Eliminar
+                                                        </th>
+                                                    </tr>
+                                                </thead>
 
-                                <div className='admin-panel__table'>
-                                    <table className='table'>
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    Nombre
-                                                </th>
-                                                <th>
-                                                    Descripcion
-                                                </th>
-                                                <th>
-                                                    Marca
-                                                </th>
-                                                <th>
-                                                    Modelo
-                                                </th>
-                                                <th>
-                                                    Tipo de Audifono
-                                                </th>
-                                                <th>
-                                                    Precio
-                                                </th>
-                                                <th>
-                                                    Stock
-                                                </th>
-                                                <th>
-                                                    Editar
-                                                </th>
-                                                <th>
-                                                    Eliminar
-                                                </th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            {
-                                                productosUsuario.map((item, index) => {
-                                                    return (
-                                                        <tr key={index}>
-                                                            <td>
-                                                                {item.nombre}
-                                                            </td>
-                                                            <td>
-                                                                {item.descripcion}
-                                                            </td>
-                                                            <td>
-                                                                {item.marca}
-                                                            </td>
-                                                            <td>
-                                                                {item.modelo}
-                                                            </td>
-                                                            <td>
-                                                                {item.tipo}
-                                                            </td>
-                                                            <td>
-                                                                ${item.precio}
-                                                            </td>
-                                                            <td>
-                                                                {item.stock}
-                                                            </td>
-                                                            <td
-                                                                onClick={() => { showEditModal() }}
-                                                            >
-                                                                Ed
-                                                            </td>
-                                                            <td>
-                                                                El
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                <tbody>
+                                                    {
+                                                        productosUsuario.map((item, index) => {
+                                                            return (
+                                                                <tr key={index}>
+                                                                    <td>
+                                                                        {item.nombre}
+                                                                    </td>
+                                                                    <td>
+                                                                        {item.descripcion}
+                                                                    </td>
+                                                                    <td>
+                                                                        {item.marca}
+                                                                    </td>
+                                                                    <td>
+                                                                        {item.modelo}
+                                                                    </td>
+                                                                    <td>
+                                                                        {item.tipo}
+                                                                    </td>
+                                                                    <td>
+                                                                        ${item.precio}
+                                                                    </td>
+                                                                    <td>
+                                                                        {item.stock}
+                                                                    </td>
+                                                                    <td
+                                                                        onClick={() => { showEditModal() }}
+                                                                    >
+                                                                        Ed
+                                                                    </td>
+                                                                    <td>
+                                                                        El
+                                                                    </td>
+                                                                </tr>
+                                                            )
+                                                        })
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        :
+                                        <div className='no-product-content'>
+                                            <p>¡No tienes productos registrados aún!</p>
+                                            <img src={imgNotProducts} alt="No hay productos" />
+                                        </div>
+                                }
                             </section>
                         </div>
                         :
-                        <p>Parece que no has iniciado sesion</p>
+                        <div className='no-session-content'>
+                            <p>¡Vaya! parece que no has iniciado sesión</p>
+                            <img src={imgNotSession} alt="No has iniciado sesion" />
+                        </div>
                 }
-                <img src={imgAdmin} alt="Administracion" className='admin-img' />
+                {
+                    logged &&
+                    <img src={imgAdmin} alt="Administracion" className='admin-img' />
+                }
                 {
                     openModal &&
                     <ModalForm
