@@ -6,9 +6,11 @@ import { ModalForm } from '../../components/ModalForm'
 import { UserContext } from '../../App'
 
 const Administration = () => {
-    const { usuario } = React.useContext(UserContext)
+    const API = "http://localhost:3001/api/v1/products"
+    const { usuario, productosUsuario, setProductosUsuario } = React.useContext(UserContext)
     const [openModal, setOpenModal] = React.useState(false)
     const [editeMode, setEditeMode] = React.useState(false)
+    const [loaded, setLoaded] = React.useState(false)
 
     const showCreateModal = () => {
         setEditeMode(false)
@@ -19,6 +21,17 @@ const Administration = () => {
         setEditeMode(true)
         setOpenModal(true)
     }
+
+    React.useEffect(() => {
+        const getAudifonos = async () => {
+            const response = await fetch(`${API}/${usuario.id}`)
+            const data = await response.json()
+            const { body } = data
+            setProductosUsuario(body)
+        }
+
+        getAudifonos()
+    }, [])
 
     return (
         <>
@@ -43,10 +56,7 @@ const Administration = () => {
                                 <thead>
                                     <tr>
                                         <th>
-                                            id
-                                        </th>
-                                        <th>
-                                            Nombr
+                                            Nombre
                                         </th>
                                         <th>
                                             Descripcion
@@ -76,137 +86,43 @@ const Administration = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Jib+
-                                        </td>
-                                        <td>
-                                            Audifonos inalambricos Jib+
-                                        </td>
-                                        <td>
-                                            Skullcandy
-                                        </td>
-                                        <td>
-                                            1234as
-                                        </td>
-                                        <td>
-                                            wireless
-                                        </td>
-                                        <td>
-                                            $500
-                                        </td>
-                                        <td>
-                                            11
-                                        </td>
-                                        <td
-                                            onClick={() => { showEditModal() }}
-                                        >
-                                            Ed
-                                        </td>
-                                        <td>
-                                            El
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Jib+
-                                        </td>
-                                        <td>
-                                            Audifonos inalambricos Jib+
-                                        </td>
-                                        <td>
-                                            Skullcandy
-                                        </td>
-                                        <td>
-                                            1234as
-                                        </td>
-                                        <td>
-                                            wireless
-                                        </td>
-                                        <td>
-                                            $500
-                                        </td>
-                                        <td>
-                                            11
-                                        </td>
-                                        <td>
-                                            Ed
-                                        </td>
-                                        <td>
-                                            El
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Jib+
-                                        </td>
-                                        <td>
-                                            Audifonos inalambricos Jib+
-                                        </td>
-                                        <td>
-                                            Skullcandy
-                                        </td>
-                                        <td>
-                                            1234as
-                                        </td>
-                                        <td>
-                                            wireless
-                                        </td>
-                                        <td>
-                                            $500
-                                        </td>
-                                        <td>
-                                            11
-                                        </td>
-                                        <td>
-                                            Ed
-                                        </td>
-                                        <td>
-                                            El
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Jib+
-                                        </td>
-                                        <td>
-                                            Audifonos inalambricos Jib+
-                                        </td>
-                                        <td>
-                                            Skullcandy
-                                        </td>
-                                        <td>
-                                            1234as
-                                        </td>
-                                        <td>
-                                            wireless
-                                        </td>
-                                        <td>
-                                            $500
-                                        </td>
-                                        <td>
-                                            11
-                                        </td>
-                                        <td>
-                                            Ed
-                                        </td>
-                                        <td>
-                                            El
-                                        </td>
-                                    </tr>
+                                    {
+                                        productosUsuario.map((item, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>
+                                                        {item.nombre}
+                                                    </td>
+                                                    <td>
+                                                        {item.descripcion}
+                                                    </td>
+                                                    <td>
+                                                        {item.marca}
+                                                    </td>
+                                                    <td>
+                                                        {item.modelo}
+                                                    </td>
+                                                    <td>
+                                                        {item.tipo}
+                                                    </td>
+                                                    <td>
+                                                        ${item.precio}
+                                                    </td>
+                                                    <td>
+                                                        {item.stock}
+                                                    </td>
+                                                    <td
+                                                        onClick={() => { showEditModal() }}
+                                                    >
+                                                        Ed
+                                                    </td>
+                                                    <td>
+                                                        El
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
                                 </tbody>
                             </table>
                         </div>

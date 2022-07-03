@@ -7,6 +7,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
     const [nombre, setNombre] = React.useState("")
     const [descripcion, setDescripcion] = React.useState("")
     const [marca, setMarca] = React.useState("")
+    const [tipo, setTipo] = React.useState("")
     const [modelo, setModelo] = React.useState("")
     const [precio, setPrecio] = React.useState(0)
     const [stock, setStock] = React.useState(0)
@@ -25,7 +26,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     placeholder='nombre'
                     className='modal-form__nombre'
                     value={nombre}
-                    onChange={(e)=>{setNombre(e.target.value)}}
+                    onChange={(e) => { setNombre(e.target.value) }}
                 />
 
                 <input
@@ -33,19 +34,21 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     placeholder='descripcion'
                     className='modal-form__descripcion'
                     value={descripcion}
-                    onChange={(e)=>{setDescripcion(e.target.value)}}
+                    onChange={(e) => { setDescripcion(e.target.value) }}
                 />
-                <select>
+                <select
+                    onChange={e => { setTipo(e.target.value) }}
+                >
                     <option value="">
                         tipo de audifono
                     </option>
-                    <option value="">
+                    <option value="Wireless">
                         wireless
                     </option>
-                    <option value="">
+                    <option value="Diadema">
                         diadema
                     </option>
-                    <option value="">
+                    <option value="Diadema Wireless">
                         diadema wireless
                     </option>
                 </select>
@@ -55,7 +58,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     placeholder='marca'
                     className='modal-form__marca'
                     value={marca}
-                    onChange={(e)=>{setMarca(e.target.value)}}
+                    onChange={(e) => { setMarca(e.target.value) }}
                 />
 
                 <input
@@ -63,7 +66,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     placeholder='modelo'
                     className='modal-form__modelo'
                     value={modelo}
-                    onChange={(e)=>{setModelo(e.target.value)}}
+                    onChange={(e) => { setModelo(e.target.value) }}
                 />
 
                 <input
@@ -71,7 +74,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     placeholder='precio'
                     className='modal-form__precio'
                     value={precio}
-                    onChange={(e)=>{setPrecio(e.target.value)}}
+                    onChange={(e) => { setPrecio(e.target.value) }}
                 />
 
                 <input
@@ -79,7 +82,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     placeholder='stock'
                     className='modal-form__stock'
                     value={stock}
-                    onChange={(e)=>{setStock(e.target.value)}}
+                    onChange={(e) => { setStock(e.target.value) }}
                 />
 
                 <div className='modal-buttons'>
