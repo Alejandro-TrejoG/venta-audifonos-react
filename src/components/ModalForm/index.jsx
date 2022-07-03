@@ -1,15 +1,61 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import "./ModalForm.css"
+import Swal from 'sweetalert2';
+
 
 const ModalForm = ({ setOpenModal, editMode }) => {
 
+    const API = "http://localhost:3001/api/v1/products/"
+
     const [nombre, setNombre] = React.useState("")
     const [descripcion, setDescripcion] = React.useState("")
+    const [tipo, setTipo] = React.useState("")
     const [marca, setMarca] = React.useState("")
     const [modelo, setModelo] = React.useState("")
-    const [precio, setPrecio] = React.useState(0)
+    const [precio, setPrecio] = React.useState("")
     const [stock, setStock] = React.useState(0)
+
+    const registrarAudifono = async () =>{
+        if(nombre.trim()!=="" && tipo.trim()!=="" && descripcion.trim()!=="" && marca.trim() !=="" && modelo.trim() !=="" && precio.trim() !== "" && stock >0){
+            const obj = {
+                nombre: nombre,
+                descripcion: descripcion,
+                tipo: tipo,
+                marca: marca,
+                modelo: modelo,
+                precio: precio,
+                stock: stock
+            }
+            await fetch(API, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(obj)
+            })
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '¡Excelente! se ha añadido tu audifono',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            setNombre("")
+            setTipo("")
+            setDescripcion("")
+            setMarca("")
+            setModelo("")
+            setPrecio("")
+            setStock(0)
+        }else{
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Llena todos los campos',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    }
 
     const closeModal = () => {
         setOpenModal(false)
@@ -35,17 +81,17 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     value={descripcion}
                     onChange={(e)=>{setDescripcion(e.target.value)}}
                 />
-                <select>
+                <select onChange={(e)=>setTipo(e.target.value)}>
                     <option value="">
                         tipo de audifono
                     </option>
-                    <option value="">
+                    <option value="wireless">
                         wireless
                     </option>
-                    <option value="">
+                    <option value="diadema">
                         diadema
                     </option>
-                    <option value="">
+                    <option value="diadema wireless">
                         diadema wireless
                     </option>
                 </select>
@@ -86,9 +132,9 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     <button
                         type='button'
                         className='action-button'
-                        onClick={() => { closeModal() }}
+                        onClick={() => { closeModal()}}
                     >
-                        {editMode ? "Guardar" : "Crear"}
+                        {editMode ? "Guardar" : "Crear" }
                     </button>
                     <button
                         type='button'
