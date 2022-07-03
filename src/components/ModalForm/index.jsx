@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom';
 import "./ModalForm.css"
 
 const ModalForm = ({ setOpenModal, editMode }) => {
-    
+
+    const [nombre, setNombre] = React.useState("")
+    const [descripcion, setDescripcion] = React.useState("")
+    const [marca, setMarca] = React.useState("")
+    const [modelo, setModelo] = React.useState("")
+    const [precio, setPrecio] = React.useState(0)
+    const [stock, setStock] = React.useState(0)
+
     const closeModal = () => {
         setOpenModal(false)
     }
@@ -17,12 +24,16 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     type="text"
                     placeholder='nombre'
                     className='modal-form__nombre'
+                    value={nombre}
+                    onChange={(e)=>{setNombre(e.target.value)}}
                 />
 
                 <input
                     type="text"
                     placeholder='descripcion'
                     className='modal-form__descripcion'
+                    value={descripcion}
+                    onChange={(e)=>{setDescripcion(e.target.value)}}
                 />
                 <select>
                     <option value="">
@@ -43,24 +54,32 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     type="text"
                     placeholder='marca'
                     className='modal-form__marca'
+                    value={marca}
+                    onChange={(e)=>{setMarca(e.target.value)}}
                 />
 
                 <input
                     type="text"
                     placeholder='modelo'
                     className='modal-form__modelo'
+                    value={modelo}
+                    onChange={(e)=>{setModelo(e.target.value)}}
                 />
 
                 <input
                     type="text"
                     placeholder='precio'
                     className='modal-form__precio'
+                    value={precio}
+                    onChange={(e)=>{setPrecio(e.target.value)}}
                 />
 
                 <input
                     type="number"
                     placeholder='stock'
                     className='modal-form__stock'
+                    value={stock}
+                    onChange={(e)=>{setStock(e.target.value)}}
                 />
 
                 <div className='modal-buttons'>
