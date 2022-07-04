@@ -7,6 +7,8 @@ import imgNotProducts from "../../images/undraw_taken_re_yn20.svg"
 import { ModalForm } from '../../components/ModalForm'
 import { UserContext } from '../../App'
 
+import Swal from 'sweetalert2'
+
 const Administration = () => {
     const API = "http://localhost:3001/api/v1/products"
     const { usuario, productosUsuario, setProductosUsuario, logged } = React.useContext(UserContext)
@@ -20,6 +22,8 @@ const Administration = () => {
     const [precioProd, setPrecioProd] = React.useState("")
     const [stockProd, setStockProd] = React.useState(0)
     const [method, setMethod] = React.useState("POST")
+    const [idProd, setIdProd] = React.useState("")
+    const [deleted, setDeleted] = React.useState(false)
 
     const showCreateModal = () => {
         setMethod("POST")
@@ -44,8 +48,36 @@ const Administration = () => {
         setTipoProd(item.tipo)
         setPrecioProd(item.precio)
         setStockProd(item.stock)
+        setIdProd(item.id)
         setEditeMode(true)
         setOpenModal(true)
+    }
+
+    const eliminarProducto = async id => {
+        Swal.fire({
+            title: '¿Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si!',
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${API}/${id}`, {
+                    method: "DELETE"
+                }).then(() => {
+                    setDeleted(!deleted)
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'El producto ha sido eliminado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                })
+            }
+        })
     }
 
     React.useEffect(() => {
@@ -57,7 +89,7 @@ const Administration = () => {
         }
 
         getAudifonos()
-    }, [openModal])
+    }, [openModal, deleted])
 
     return (
         <>
@@ -154,6 +186,7 @@ const Administration = () => {
                                                                         <button
                                                                             type='button'
                                                                             className='boton-eliminar'
+                                                                            onClick={() => { eliminarProducto(item.id) }}
                                                                         >
                                                                             <i className="fas fa-trash"></i>
                                                                         </button>
@@ -197,6 +230,7 @@ const Administration = () => {
                         stockProd={stockProd}
                         tipoProd={tipoProd}
                         method={method}
+                        idProd={idProd}
                     // setEditeMode={setEditeMode}
                     />
                 }

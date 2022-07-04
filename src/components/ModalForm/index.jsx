@@ -15,6 +15,7 @@ const ModalForm = ({
     stockProd,
     tipoProd,
     method,
+    idProd
 }) => {
 
     const API = "http://localhost:3001/api/v1/products"
@@ -41,18 +42,33 @@ const ModalForm = ({
                 stock: stock,
                 usuario: usuario.id
             }
-            await fetch(API, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(obj)
-            })
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '¡Excelente! se ha añadido el audifono',
-                showConfirmButton: false,
-                timer: 1500
-            })
+            if (method === "POST") {
+                await fetch(API, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(obj)
+                })
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '¡Excelente! se ha añadido el audifono',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                await fetch(`${API}/${idProd}`, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(obj)
+                })
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '¡Excelente! se ha actualizado el producto',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
             setNombre("")
             setTipo("")
             setDescripcion("")
@@ -60,6 +76,7 @@ const ModalForm = ({
             setModelo("")
             setPrecio("")
             setStock(0)
+            setOpenModal(false)
         } else {
             Swal.fire({
                 position: 'center',
