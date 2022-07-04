@@ -4,19 +4,30 @@ import "./ModalForm.css"
 import Swal from 'sweetalert2';
 import { UserContext } from '../../App'
 
-const ModalForm = ({ setOpenModal, editMode }) => {
+const ModalForm = ({
+    setOpenModal,
+    editMode,
+    nombreProd,
+    descripcionProd,
+    marcaProd,
+    modeloProd,
+    precioProd,
+    stockProd,
+    tipoProd,
+    method,
+}) => {
+
+    const API = "http://localhost:3001/api/v1/products"
+
     const { usuario } = React.useContext(UserContext)
 
-    const API = "http://localhost:3001/api/v1/products/"
-
-    const [nombre, setNombre] = React.useState("")
-    const [descripcion, setDescripcion] = React.useState("")
-    const [tipo, setTipo] = React.useState("")
-    const [marca, setMarca] = React.useState("")
-    // const [tipo, setTipo] = React.useState("")
-    const [modelo, setModelo] = React.useState("")
-    const [precio, setPrecio] = React.useState("")
-    const [stock, setStock] = React.useState(0)
+    const [nombre, setNombre] = React.useState(nombreProd)
+    const [descripcion, setDescripcion] = React.useState(descripcionProd)
+    const [marca, setMarca] = React.useState(marcaProd)
+    const [tipo, setTipo] = React.useState(tipoProd)
+    const [modelo, setModelo] = React.useState(modeloProd)
+    const [precio, setPrecio] = React.useState(precioProd)
+    const [stock, setStock] = React.useState(stockProd)
 
     const registrarAudifono = async () => {
         if (nombre.trim() !== "" && tipo.trim() !== "" && descripcion.trim() !== "" && marca.trim() !== "" && modelo.trim() !== "" && precio.trim() !== "" && stock > 0) {
@@ -84,7 +95,10 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     value={descripcion}
                     onChange={(e) => { setDescripcion(e.target.value) }}
                 />
-                <select onChange={(e) => setTipo(e.target.value)}>
+                <select
+                    value={tipo}
+                    onChange={e => { setTipo(e.target.value) }}
+                >
                     <option value="">
                         tipo de audifono
                     </option>

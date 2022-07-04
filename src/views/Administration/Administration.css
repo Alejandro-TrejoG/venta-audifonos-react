@@ -138,6 +138,37 @@ table tr:nth-of-type(2n){
     animation: notProducts 3s infinite;
 }
 
+
+.boton-editar{
+    border: 1px solid #69657F;
+    padding: 0.3rem;
+    background: transparent;
+    color: #000;
+    border-radius: 5px;
+}
+
+.boton-editar:hover{
+    background: #69657F;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.boton-eliminar{
+    border: 1px solid #D50000;
+    padding: 0.3rem 0.4rem;
+    background: transparent;
+    color: #000;
+    border-radius: 5px;
+}
+
+.boton-eliminar:hover{
+    background: #D50000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
 /*MEDIA QUERIES*/
 
 @media (min-width:425px) {
