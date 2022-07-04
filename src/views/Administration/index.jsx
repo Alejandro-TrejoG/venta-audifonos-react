@@ -12,13 +12,30 @@ const Administration = () => {
     const { usuario, productosUsuario, setProductosUsuario, logged } = React.useContext(UserContext)
     const [openModal, setOpenModal] = React.useState(false)
     const [editeMode, setEditeMode] = React.useState(false)
+    const [nombreProd, setNombreProd] = React.useState("")
+    const [descripcionProd, setDescripcionProd] = React.useState("")
+    const [marcaProd, setMarcaProd] = React.useState("")
+    const [modeloProd, setModeloProd] = React.useState("")
+    const [tipoProd, setTipoProd] = React.useState("")
+    const [precioProd, setPrecioProd] = React.useState("")
+    const [stockProd, setStockProd] = React.useState(0)
+    const [method, setMethod] = React.useState("POST")
 
     const showCreateModal = () => {
+        setMethod("POST")
         setEditeMode(false)
         setOpenModal(true)
     }
 
-    const showEditModal = () => {
+    const showEditModal = (item) => {
+        setMethod("PATCH")
+        setNombreProd(item.nombre)
+        setDescripcionProd(item.descripcion)
+        setMarcaProd(item.marca)
+        setModeloProd(item.modelo)
+        setTipoProd(item.tipo)
+        setPrecioProd(item.precio)
+        setStockProd(item.stock)
         setEditeMode(true)
         setOpenModal(true)
     }
@@ -116,7 +133,7 @@ const Administration = () => {
                                                                         {item.stock}
                                                                     </td>
                                                                     <td
-                                                                        onClick={() => { showEditModal() }}
+                                                                        onClick={() => { showEditModal(item) }}
                                                                     >
                                                                         <button
                                                                             type='button'
@@ -164,6 +181,14 @@ const Administration = () => {
                         // openModal={openModal}
                         setOpenModal={setOpenModal}
                         editMode={editeMode}
+                        nombreProd={nombreProd}
+                        descripcionProd={descripcionProd}
+                        marcaProd={marcaProd}
+                        modeloProd={modeloProd}
+                        precioProd={precioProd}
+                        stockProd={stockProd}
+                        tipoProd={tipoProd}
+                        method={method}
                     // setEditeMode={setEditeMode}
                     />
                 }

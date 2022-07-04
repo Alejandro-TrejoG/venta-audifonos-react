@@ -2,15 +2,26 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import "./ModalForm.css"
 
-const ModalForm = ({ setOpenModal, editMode }) => {
+const ModalForm = ({
+    setOpenModal,
+    editMode,
+    nombreProd,
+    descripcionProd,
+    marcaProd,
+    modeloProd,
+    precioProd,
+    stockProd,
+    tipoProd,
+    method,
+}) => {
 
-    const [nombre, setNombre] = React.useState("")
-    const [descripcion, setDescripcion] = React.useState("")
-    const [marca, setMarca] = React.useState("")
-    const [tipo, setTipo] = React.useState("")
-    const [modelo, setModelo] = React.useState("")
-    const [precio, setPrecio] = React.useState(0)
-    const [stock, setStock] = React.useState(0)
+    const [nombre, setNombre] = React.useState(nombreProd)
+    const [descripcion, setDescripcion] = React.useState(descripcionProd)
+    const [marca, setMarca] = React.useState(marcaProd)
+    const [tipo, setTipo] = React.useState(tipoProd)
+    const [modelo, setModelo] = React.useState(modeloProd)
+    const [precio, setPrecio] = React.useState(precioProd)
+    const [stock, setStock] = React.useState(stockProd)
 
     const closeModal = () => {
         setOpenModal(false)
@@ -37,6 +48,7 @@ const ModalForm = ({ setOpenModal, editMode }) => {
                     onChange={(e) => { setDescripcion(e.target.value) }}
                 />
                 <select
+                    value={tipo}
                     onChange={e => { setTipo(e.target.value) }}
                 >
                     <option value="">
