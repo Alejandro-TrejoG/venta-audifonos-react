@@ -2,6 +2,7 @@ import React from 'react'
 import "./Register.css"
 import regImg from "../../images/undraw_uploading_re_okvh.svg"
 import Swal from 'sweetalert2'
+import {NavLink} from 'react-router-dom'
 
 const Registration = () => {
 
@@ -90,11 +91,16 @@ const Registration = () => {
                         value={contraseniaConf}
                         onChange={(e)=>{setContraseniaConf(e.target.value)}}
                     />
-                    <button
-                        type='button'
-                        className='register-button'
-                        onClick={() => {insertUser()}}
-                    >Registrar</button>
+                    <div className="container-enlaces">
+                        <button
+                            type='button'
+                            className='register-button'
+                            onClick={() => {insertUser()}}
+                        >Registrar</button>
+                        <NavLink to='/' className="enlace">
+                            Volver
+                        </NavLink>
+                    </div>
                 </form>
             </div>
         </div>

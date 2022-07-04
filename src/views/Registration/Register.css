@@ -55,7 +55,6 @@
 .register-button {
   width: 120px;
   height: 30px;
-  margin: 2rem auto;
   color: #ccc147;
   border: 2px solid #dace4d;
   border-radius: 5px;
@@ -77,6 +76,25 @@
   transform: scale(0.98);
 }
 
+.container-enlaces{
+  display: flex;
+  justify-content: center;
+  margin: 25px 10px;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.enlace{
+  margin: 0 60px;
+  color: black;
+  text-decoration: none;
+}
+
+.enlace:hover {
+  color: rgb(0, 3, 151);
+  text-decoration: underline;
+  transition: all 0.3s ease-out;
+}
 /*MEDIA QUERIES*/
 
 @media (min-width: 768px) {
