@@ -10,7 +10,7 @@ import { UserContext } from '../../App'
 import Swal from 'sweetalert2'
 
 const Administration = () => {
-    const API = "http://localhost:3001/api/v1/products"
+    const API = "https://serene-wind-cave-34306.herokuapp.com/api/v1/products"
     const { usuario, productosUsuario, setProductosUsuario, logged } = React.useContext(UserContext)
     const [openModal, setOpenModal] = React.useState(false)
     const [editeMode, setEditeMode] = React.useState(false)

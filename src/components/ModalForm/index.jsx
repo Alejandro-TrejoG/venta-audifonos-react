@@ -18,7 +18,7 @@ const ModalForm = ({
     idProd
 }) => {
 
-    const API = "http://localhost:3001/api/v1/products"
+    const API = "https://serene-wind-cave-34306.herokuapp.com/api/v1/products"
 
     const { usuario } = React.useContext(UserContext)
 

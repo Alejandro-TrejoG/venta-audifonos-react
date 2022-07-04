@@ -12,7 +12,7 @@ const Login = () => {
     const { setUsuario, setLogged } = React.useContext(UserContext)
 
     const navigate = useNavigate()
-    const API = "http://localhost:3001/api/v1/users"
+    const API = "https://serene-wind-cave-34306.herokuapp.com/api/v1/users"
     const [correo, setCorreo] = React.useState("")
     const [contrasenia, setContrasenia] = React.useState("")
 
