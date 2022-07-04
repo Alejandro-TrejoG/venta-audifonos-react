@@ -118,10 +118,20 @@ const Administration = () => {
                                                                     <td
                                                                         onClick={() => { showEditModal() }}
                                                                     >
-                                                                        Ed
+                                                                        <button
+                                                                            type='button'
+                                                                            className='boton-editar'
+                                                                        >
+                                                                            <i className="fas fa-edit"></i>
+                                                                        </button>
                                                                     </td>
                                                                     <td>
-                                                                        El
+                                                                        <button
+                                                                            type='button'
+                                                                            className='boton-eliminar'
+                                                                        >
+                                                                            <i className="fas fa-trash"></i>
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             )
