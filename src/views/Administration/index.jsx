@@ -23,6 +23,14 @@ const Administration = () => {
 
     const showCreateModal = () => {
         setMethod("POST")
+        setNombreProd("")
+        setDescripcionProd("")
+        setMarcaProd("")
+        setModeloProd("")
+        setTipoProd("")
+        setPrecioProd("")
+        setStockProd(0)
+        console.log(nombreProd);
         setEditeMode(false)
         setOpenModal(true)
     }
