@@ -10,7 +10,7 @@ import { UserContext } from '../../App'
 import Swal from 'sweetalert2'
 
 const Administration = () => {
-    const API = "http://localhost:3001/api/v1/products"
+    const API = "https://api-venta-audifonos.herokuapp.com/api/v1/products"
     const { usuario, productosUsuario, setProductosUsuario, logged } = React.useContext(UserContext)
     const [openModal, setOpenModal] = React.useState(false)
     const [editeMode, setEditeMode] = React.useState(false)
@@ -20,7 +20,7 @@ const Administration = () => {
     const [modeloProd, setModeloProd] = React.useState("")
     const [tipoProd, setTipoProd] = React.useState("")
     const [precioProd, setPrecioProd] = React.useState("")
-    const [stockProd, setStockProd] = React.useState(0)
+    const [stockProd, setStockProd] = React.useState(null)
     const [method, setMethod] = React.useState("POST")
     const [idProd, setIdProd] = React.useState("")
     const [deleted, setDeleted] = React.useState(false)
@@ -33,7 +33,7 @@ const Administration = () => {
         setModeloProd("")
         setTipoProd("")
         setPrecioProd("")
-        setStockProd(0)
+        setStockProd(null)
         console.log(nombreProd);
         setEditeMode(false)
         setOpenModal(true)
